@@ -2,7 +2,7 @@
 # coding=utf-8
 
 from ConfigParse import ConfigParse
-from Logger import Logger
+from HttpClient import HttpClient
 
 '''
 import sl4a
@@ -64,6 +64,9 @@ print conf.getValue("config.http.cacert")
 '''
 
 
-logger = Logger("./conf.xml", "/var/log/fuquang.log")
-logger.debugLog("hello...")
+
+httpcli = HttpClient("./conf.xml")
+res = httpcli.sendRequest("GET", "/", body=None, head=None)
+print res.getheaders()
+#print res.read()
 

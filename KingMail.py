@@ -6,6 +6,7 @@ import smtplib
 import chardet
 from email.mime.text import MIMEText
 from email.header import Header
+from ProCommon import logger
  
 class KingMail(object):
     """
@@ -37,7 +38,7 @@ class KingMail(object):
             message['To'] = ','.join(self.receivers)
             self.smtpObj.sendmail(self.sender, self.receivers, message.as_string())
         except smtplib.SMTPException, e:
-            print "Error: 无法发送邮件, cause: ", e
+            logger.errLog("Error: 无法发送邮件, cause:", e)
             #print isinstance(e.smtp_error, unicode)
             #print isinstance(e.smtp_error, 'utf-8')
             #print type(e)
@@ -55,14 +56,14 @@ class KingMail(object):
             message['To'] = ','.join(self.receivers)
             self.smtpObj.sendmail(self.sender, self.receivers, message.as_string())
         except smtplib.SMTPException, e:
-            print "Error: 无法发送邮件, cause: ", e
+            logger.errLog("Error: 无法发送邮件, cause:", e)
             #print isinstance(e.smtp_error, unicode)
             #print isinstance(e.smtp_error, 'utf-8')
             #print type(e)
             #fencoding=chardet.detect(e.smtp_error)
             #print fencoding
 
-k = KingMail()
-fs = open("/home/stockFilter/dt")
-dt = fs.read()
-k.sendhtml(dt)
+#k = KingMail()
+#fs = open("/home/stockFilter/dt")
+#dt = fs.read()
+#k.sendhtml(dt)
