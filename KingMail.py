@@ -15,7 +15,7 @@ class KingMail(object):
     def __init__(self):
         self.mailhost = "smtp.yeah.net"
         self.user = "rabinhu@yeah.net"
-        self.pswd = "rabinhu007"
+        self.pswd = "---------"
         self.sender = 'rabinhu@yeah.net'
         self.receivers = ['hulizhong@yeah.net', 'hulizhong@skyguard.com.cn']
         self.smtpObj = smtplib.SMTP() 
