@@ -7,6 +7,7 @@ import chardet
 from email.mime.text import MIMEText
 from email.header import Header
 from ProCommon import logger
+from EncDec import EncDecGraph
  
 class KingMail(object):
     """
@@ -14,13 +15,14 @@ class KingMail(object):
     """
     def __init__(self):
         self.mailhost = "smtp.yeah.net"
-        self.user = "rabinhu@yeah.net"
-        self.pswd = "---------"
+        self.user = "rabinhu"
+        self.encpswd = "0lz96ur77o"
         self.sender = 'rabinhu@yeah.net'
-        self.receivers = ['hulizhong@yeah.net', 'hulizhong@skyguard.com.cn']
+        self.receivers = ['rabinhu@yeah.net']
+        pswd = EncDecGraph()
         self.smtpObj = smtplib.SMTP() 
         self.smtpObj.connect(self.mailhost, 25)
-        self.smtpObj.login(self.user, self.pswd)  
+        self.smtpObj.login(self.user, pswd.dec(self.encpswd))  
 
     def __del__(self):
         ### bug, Exception smtplib.SMTPServerDisconnected: SMTPServerDisconnected('Connection unexpectedly closed',)
@@ -64,6 +66,7 @@ class KingMail(object):
             #print fencoding
 
 #k = KingMail()
-#fs = open("/home/stockFilter/dt")
+#fs = open("/home/pro/stockFilter/conf.xml")
 #dt = fs.read()
 #k.sendhtml(dt)
+
