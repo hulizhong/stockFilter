@@ -3,6 +3,7 @@
 
 from ConfigParse import ConfigParse
 from HttpClient import HttpClient
+from PgClient import PgClient
 
 '''
 import sl4a
@@ -70,3 +71,6 @@ res = httpcli.sendRequest("GET", "/", body=None, head=None)
 print res.getheaders()
 #print res.read()
 
+pgcli = PgClient("./conf.xml")
+res = pgcli.query("select * from deadlock.t_transaction");
+print res
