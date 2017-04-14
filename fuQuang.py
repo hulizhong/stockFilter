@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from ConfigParse import ConfigParse
+from Logger import Logger
 
+'''
 import sl4a
 droid = sl4a.Android()
 droid.smsSend("18501960037","sms")
+'''
+
 
 '''
 import lxml.etree  
@@ -50,4 +55,15 @@ except Exception, e:
 #
 #item2 = itemlist[1]                  #通过在itemlist中的位置区分
 #print item2.getAttribute("id")
+
+'''
+conf = ConfigParse("./conf.xml")
+print conf.getValue("config.http.isssl")
+print conf.getValue("config.http.processtimeout")
+print conf.getValue("config.http.cacert")
+'''
+
+
+logger = Logger("./conf.xml", "/var/log/fuquang.log")
+logger.debugLog("hello...")
 

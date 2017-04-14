@@ -1,0 +1,12 @@
+<config>
+    <http>
+        <isssl>false</isssl>
+        <cacert></cacert>
+        <processtimeout>60</processtimeout>
+    </http>
+    <logging>
+        <backup>3</backup>
+        <maxsize>5</maxsize> <!-- sizeof MB -->
+        <level>debug</level> <!-- debug, info, warn, error -->
+    </logging>
+</config>
