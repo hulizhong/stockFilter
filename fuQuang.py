@@ -66,11 +66,13 @@ print conf.getValue("config.http.cacert")
 
 
 
-httpcli = HttpClient("./conf.xml")
-res = httpcli.sendRequest("GET", "/", body=None, head=None)
-print res.getheaders()
+##httpcli = HttpClient("./conf.xml")
+##res = httpcli.sendRequest("GET", "/", body=None, head=None)
+##print res.getheaders()
 #print res.read()
 
 pgcli = PgClient("./conf.xml")
+res = pgcli.exc("insert into deadlock.t_transaction values(1, 'dasfadf')");
+print res
 res = pgcli.query("select * from deadlock.t_transaction");
 print res

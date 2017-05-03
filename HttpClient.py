@@ -5,6 +5,7 @@ from ProCommon import logger
 from ConfigParse import ConfigParse
 import ssl
 import httplib
+import time
 
 #############################################################
 #goal: http client
@@ -55,6 +56,7 @@ class HttpClient(object):
         :param method, support POST, DELETE, PUT, GET
         """
         try:
+            logger.errLog("----in:", time.ctime())
             if self.connok == False:
                 raise AssertionError("HttpClient connection not ready.")
 
@@ -71,6 +73,7 @@ class HttpClient(object):
             res = self.conn.getresponse()
             if res.status == 200:
                 #res is HTTPResponse obj
+                logger.errLog("----outok:", time.ctime())
                 return res
             else:
                 logger.errLog('send request failed, cause recv: ', res.status, res.read())
