@@ -3,13 +3,13 @@
 
 ## for pyquery test
 
+import sys
 from pyquery import PyQuery as pq
 from lxml import etree
 
 #url v_source=pq(url='http://yunvs.com/list/mai_1.html')
 #str v_source=pq("")
 v_source = pq(filename="./pqTestData.html")
-'''
 for data in v_source('tr'):
     ##各种打印
     print "--------------data\n", data
@@ -17,9 +17,13 @@ for data in v_source('tr'):
     print "--------pq(data)\n", pq(data)
     print "--------pq(data).text()\n", pq(data).text()
     print "++++++++++++++"
-'''
 
-for data in v_source('tr'):
+sys.exit()
+'''
+trdata = v_source('tr')
+print trdata
+
+for data in trdata:
     ##打印每段
     for i in range(len(data)):
         #print pq(data).find('td').eq(i)
@@ -30,4 +34,5 @@ for data in v_source('tr'):
     for i in range(len(pq(v_ind).find('a'))):
         print pq(v_ind).find('a').eq(i).text()
     print '---------------------'
+'''
 
