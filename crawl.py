@@ -177,71 +177,72 @@ class ReqClient(object):
             print('parse error: {}'.format(e))
 
 
-
-class WeatherForecast(ReqClient):
-    """
-    BeiJing Weather forecast.
-    """
-    def __init__(self, argsHeaders):
-        super(WeatherForecast, self).__init__(argsHeaders)
-
-    def parsePage(self):
-        """
-        """
-        if self.doc == None:
-            print('invalid content')
-            return None
-        try:
-            pg = PQ(self.doc)
-            v_source = PQ(resp)
-            for data in v_source('li'):
-                if PQ(data).attr('class') == 'sky skyid lv2 on':
-                    break
-            dt = PQ(data).text()
-            print dt
-            #mail = KingMail()
-            #mail.sendhtml(dt)
-        except Exception as e:
-            print('parse error: {}'.format(e))
-
-itpubHeader = {"Host":"www.weather.com.cn"}
-req = WeatherForecast(itpubHeader )
-resp = req.getPage("http://www.weather.com.cn/weather/101010100.shtml")
-req.parsePage()
-
-
-class ItpubReqClient(ReqClient):
-    """
-    www.itpub.net BBS star person.
-    """
-    def __init__(self, argsHeaders):
-        super(ItpubReqClient, self).__init__(argsHeaders)
-
-    def parsePage(self):
-        """
-        """
-        if self.doc == None:
-            print('invalid content')
-            return None
-        try:
-            resp = re.sub("meta charset=\"gb2312\"", "meta charset=\"utf8\"", self.doc)
-            v_list = PQ(resp)
-            for data in v_list('div'):
-                if PQ(data).attr('class') == 'bor1':
-                    for it in PQ(data).children():
-                        print '--->', PQ(it).text()
-                    print '\n\n-----------------------------------------------------'
-        except Exception as e:
-            print('parse error: {}'.format(e))
+##### www.weather.com.cn WeatherForecast Demo.
+#class WeatherForecast(ReqClient):
+#    """
+#    BeiJing Weather forecast.
+#    """
+#    def __init__(self, argsHeaders):
+#        super(WeatherForecast, self).__init__(argsHeaders)
+#
+#    def parsePage(self):
+#        """
+#        """
+#        if self.doc == None:
+#            print('invalid content')
+#            return None
+#        try:
+#            pg = PQ(self.doc)
+#            v_source = PQ(resp)
+#            for data in v_source('li'):
+#                if PQ(data).attr('class') == 'sky skyid lv2 on':
+#                    break
+#            dt = PQ(data).text()
+#            print dt
+#            #mail = KingMail()
+#            #mail.sendhtml(dt)
+#        except Exception as e:
+#            print('parse error: {}'.format(e))
+#
+#itpubHeader = {"Host":"www.weather.com.cn"}
+#req = WeatherForecast(itpubHeader )
+#resp = req.getPage("http://www.weather.com.cn/weather/101010100.shtml")
+#req.parsePage()
 
 
+##### www.itpub.net/star ItpubReqClient Demo
+#class ItpubReqClient(ReqClient):
+#    """
+#    www.itpub.net BBS star person.
+#    """
+#    def __init__(self, argsHeaders):
+#        super(ItpubReqClient, self).__init__(argsHeaders)
+#
+#    def parsePage(self):
+#        """
+#        """
+#        if self.doc == None:
+#            print('invalid content')
+#            return None
+#        try:
+#            resp = re.sub("meta charset=\"gb2312\"", "meta charset=\"utf8\"", self.doc)
+#            v_list = PQ(resp)
+#            for data in v_list('div'):
+#                if PQ(data).attr('class') == 'bor1':
+#                    for it in PQ(data).children():
+#                        print '--->', PQ(it).text()
+#                    print '\n\n-----------------------------------------------------'
+#        except Exception as e:
+#            print('parse error: {}'.format(e))
+#
+#
 #baseurl = "http://www.itpub.net/star/?page="
 #urls = []
 #for i in range(1,18):
 #    url = baseurl + str(i)
 #    urls.append(url)
 #print urls
-
+#
 #itpubHeader = {"Host":"www.itpub.net"}
 #req = ItpubReqClient(itpubHeader)
 #req.getPage("http://www.itpub.net/star/?page=1", 'gbk')
